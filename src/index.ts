@@ -13,8 +13,8 @@ const main = async () => {
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
-      entities: [Client],
-      synchronize: true
+      entities: [Client], // table in database
+      synchronize: true // to migrate automatically
     });
 
     let connection = await dataSource.initialize();
