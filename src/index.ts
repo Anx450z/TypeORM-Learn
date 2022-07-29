@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import dotenv from "dotenv"
 import { Client } from "./entities/client"
+import { Banker } from "./entities/banker";
 
 dotenv.config()
 
@@ -13,7 +14,7 @@ const main = async () => {
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
       database: process.env.DATABASE,
-      entities: [Client], // table in database
+      entities: [Client, Banker], // table in database
       synchronize: true // to migrate automatically
     });
 
