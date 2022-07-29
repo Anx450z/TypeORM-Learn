@@ -1,4 +1,5 @@
-import { Entity, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Entity, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from "typeorm"
+import { Client } from "./client";
 import { Person } from "./utils/person";
 
 @Entity('banker') //name of the table
@@ -15,4 +16,20 @@ export class Banker extends Person{
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @ManyToMany(
+    () => Client 
+  )
+  @JoinTable({
+    name: "banker_clients",
+    joinColumn: {
+      name: "banker",
+      referencedColumnName: 'id'
+    },
+    inverseJoinColumn: {
+      name: "client",
+      referencedColumnName: "id"
+    }
+  })
+  clients: Client[]
 }
