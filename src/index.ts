@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import { Client } from "./entities/client"
 import { Banker } from "./entities/banker";
 import { Transaction } from "./entities/Transaction";
+import { createClientRouter } from "./routes/create_client";
 
 dotenv.config()
 const app = express()
@@ -26,6 +27,7 @@ const main = async () => {
 
     // Middleware
     app.use(express.json()) // req.body
+    app.use(createClientRouter)
 
     app.listen(8080, ()=> {
       console.log("🟢 now running at Port: 8080 🌐")
