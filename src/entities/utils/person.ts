@@ -1,9 +1,9 @@
-import { Entity,BaseEntity, Column, PrimaryColumn } from "typeorm"
+import { Entity,BaseEntity, Column, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity() //this will not be saved in the database
 export class Person extends BaseEntity{
 
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number
   
   @Column()
