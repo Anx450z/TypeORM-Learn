@@ -18,7 +18,6 @@ router.post("/api/banker", async (req, res) => {
     last_name: lastName,
     email,
     card_number: cardNumber,
-    balance,
     employee_number: empNumber
   })
 
