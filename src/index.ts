@@ -19,10 +19,10 @@ const main = async () => {
     });
 
     let connection = await dataSource.initialize();
-    console.log("🟢 Connected successfully to Postgres 🐘")
+    console.log("🟢 Connected successfully to Postgresql 🐘")
   } catch (error) {
     console.error(error)
-    throw new Error("🔴 Unable to connect to postgresql 🤔")
+    throw new Error("🔴 Unable to connect to Postgresql 🤔")
   }
 
 

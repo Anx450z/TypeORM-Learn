@@ -1,27 +1,8 @@
-import { Entity,BaseEntity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Entity, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Person } from "./utils/person";
 
 @Entity('banker') //name of the table
-export class Banker extends BaseEntity{
-
-  @PrimaryColumn()
-  id: number
-  
-  @Column()
-  first_name: string;
-
-  @Column()
-  last_name: string;
-
-  @Column({
-    unique: true
-  })
-  email: string
-
-  @Column({
-    unique: true,
-    length: 10
-  })
-  card_namer: string
+export class Banker extends Person{
 
   @Column({
     unique: true,
