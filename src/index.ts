@@ -1,21 +1,24 @@
 import { DataSource } from "typeorm";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const main = async () => {
   try {
     const dataSource = new DataSource({
       type: "postgres",
-      host: "127.0.0.1",
+      host: process.env.HOST,
       port: 5432,
-      username: "postgres",
-      password: "ankur",
-      database: "typeorm",
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE
     });
 
     let connection = await dataSource.initialize();
-    console.log("connected successfully to Postgres 😊")
+    console.log("Connected successfully to Postgres 🐘")
   } catch (error) {
-    console.log("🤔 something went wrong")
-    console.log(error);
+    console.error(error)
+    throw new Error("Unable to connect to postgresql 🤔")
   }
 
 
