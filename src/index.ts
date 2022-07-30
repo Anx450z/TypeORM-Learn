@@ -10,24 +10,14 @@ import { createTransactionRouter } from "./routes/create_transaction";
 import { connectBankerToClient } from "./routes/connect_banker_to_client"
 import { deleteClientRouter } from "./routes/delete_client";
 import { fetchClientRouter } from "./routes/fetch_clients";
+import { dataSource } from "./dataSource";
 
-dotenv.config()
 const app = express()
 
 const main = async () => {
   try {
-    const dataSource = new DataSource({
-      type: "postgres",
-      host: process.env.HOST,
-      port: 5432,
-      username: process.env.USERNAME,
-      password: process.env.PASSWORD,
-      database: process.env.DATABASE,
-      entities: [Client, Banker, Transaction], // table in database
-      synchronize: true // to migrate automatically
-    });
 
-    let connection = await dataSource.initialize();
+    await dataSource.initialize();
     console.log("🟢 Connected successfully to Postgresql 🐘")
 
     // Middleware
@@ -48,8 +38,6 @@ const main = async () => {
     throw new Error("🔴 Unable to connect to Postgresql 🤔")
   }
 
-
-  // connection.manager./* your stuff...*/
 };
 
 main();
