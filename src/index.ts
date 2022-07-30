@@ -7,6 +7,7 @@ import { Transaction } from "./entities/Transaction";
 import { createClientRouter } from "./routes/create_client";
 import { createBankerRouter } from "./routes/create_banker";
 import { createTransactionRouter } from "./routes/create_transaction";
+import { connectBankerToClient } from "./routes/connect_banker_to_client"
 
 dotenv.config()
 const app = express()
@@ -32,6 +33,7 @@ const main = async () => {
     app.use(createClientRouter)
     app.use(createBankerRouter)
     app.use(createTransactionRouter)
+    app.use(connectBankerToClient)
 
     app.listen(8080, ()=> {
       console.log("🟢 now running at Port: 8080 🌐")
