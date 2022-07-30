@@ -23,9 +23,13 @@ router.get("/api/clients", async (req, res)=>{
   .select("client.first_name")
   .addSelect("client.balance")
   .from(Client, "client")
+  .leftJoinAndSelect(
+    "client.transactions",
+    "transactions"
+  )
   .where("client.balance >= :minBalance AND client.balance <= :maxBalance", { 
     minBalance: 500 ,
-    maxBalance: 1000
+    maxBalance: 2000000000
   })
   .getManyAndCount()
   
