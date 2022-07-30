@@ -7,7 +7,7 @@ const router = express.Router()
 router.post("/api/client/:clientId/transaction", async (req, res) =>{
   const { clientId } = req.params
 
-  const { type, amount } = req.body
+  const { type, amount} = req.body
 
   const client = await Client.findOneBy({id: parseInt(clientId)})
 
@@ -26,7 +26,7 @@ router.post("/api/client/:clientId/transaction", async (req, res) =>{
   await transaction.save()
 
   if (type === TransactionTypes.DEPOSITS){
-    client.balance = client.balance + amount
+    client.balance = parseFloat(client.balance.toString()) + amount
   } else if (type === TransactionTypes.WITHDRAW ){
     client.balance = client.balance - amount
   }
